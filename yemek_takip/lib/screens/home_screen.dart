@@ -145,7 +145,7 @@ class HomeScreen extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
-        selectedItemColor: const Color(0xFFFF6B35),
+        selectedItemColor: const Color.fromARGB(255, 4, 49, 117)
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Menü'),
           BottomNavigationBarItem(
