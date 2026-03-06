@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../domain/food_entry.dart';
+import 'comment_screen.dart';
 
 class DetailScreen extends StatelessWidget {
   final FoodEntry entry;
@@ -91,7 +92,14 @@ class DetailScreen extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CommentScreen(entry: entry),
+                    ),
+                  );
+                },
                 icon: const Icon(Icons.comment_outlined,
                     color: Colors.white),
                 label: const Text(

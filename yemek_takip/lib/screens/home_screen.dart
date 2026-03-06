@@ -6,7 +6,7 @@ import 'profile_screen.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  // Mock veri — Firebase bağlanınca burası değişecek
+  
   static final List<FoodEntry> mockMenu = [
     FoodEntry(
       id: '1',
