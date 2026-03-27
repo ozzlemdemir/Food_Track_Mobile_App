@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'providers/menu_provider.dart';
+import 'core/di/service_locator.dart';
+import 'features/menu/presentation/viewmodels/menu_viewmodel.dart';
 import 'screens/login_screen.dart';
 
 void main() {
+  ServiceLocator().setup();
   runApp(
     ChangeNotifierProvider(
-      create: (_) => MenuProvider(),
+      create: (_) => ServiceLocator().get<MenuViewModel>()..loadMenus(),
       child: const MyApp(),
     ),
   );

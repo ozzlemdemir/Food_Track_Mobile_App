@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../domain/food_entry.dart';
+import '../core/entities/food_entry.dart';
 
 class CommentScreen extends StatelessWidget {
   final FoodEntry entry;
