@@ -50,14 +50,22 @@ class HomeScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: const Color(0xFFFFF8F3),
           appBar: AppBar(
-            backgroundColor: const Color(0xFFFF6B35),
-            title: const Text(
-              'Bu Haftanın Menüsü',
-              style: TextStyle(color: Colors.white),
-            ),
-            centerTitle: true,
-            automaticallyImplyLeading: false,
-          ),
+  backgroundColor: const Color(0xFFFF6B35),
+  title: const Text(
+    'Bu Haftanın Menüsü',
+    style: TextStyle(color: Colors.white),
+  ),
+  centerTitle: true,
+  automaticallyImplyLeading: false,
+  actions: [
+    IconButton(
+      icon: const Icon(Icons.refresh, color: Colors.white),
+      onPressed: () {
+        context.read<MenuViewModel>().refreshMenus();
+      },
+    ),
+  ],
+),
           body: Column(
             children: [
               // Filtre butonları

@@ -5,7 +5,7 @@ class FoodModel {
   final String dayName;
   final List<String> meals;
   final double rating;
-  final String dateStr; // JSON'dan String gelir
+  final String dateStr;
 
   FoodModel({
     required this.id,
@@ -26,7 +26,7 @@ class FoodModel {
     );
   }
 
-  // FoodModel → FoodEntry (Entity)
+  // FoodModel → FoodEntry
   FoodEntry toEntity() {
     return FoodEntry(
       id: id,

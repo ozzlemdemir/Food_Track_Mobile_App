@@ -39,6 +39,12 @@ class MenuViewModel extends ChangeNotifier {
     }
   }
 
+  // Cache temizleyip yeniden yükle
+  Future<void> refreshMenus() async {
+    repository.clearCache();
+    await loadMenus();
+  }
+
   void filterByDay(String? day) {
     _selectedDay = day;
     notifyListeners();

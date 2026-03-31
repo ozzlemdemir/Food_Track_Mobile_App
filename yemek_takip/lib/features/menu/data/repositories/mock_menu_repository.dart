@@ -33,4 +33,9 @@ class MockMenuRepository implements MenuRepository {
       throw ServerException('Hata: $e');
     }
   }
+
+  @override
+  void clearCache() {
+    dataSource.clearCache();
+  }
 }
