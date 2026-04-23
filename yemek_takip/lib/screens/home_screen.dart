@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../features/menu/presentation/viewmodels/menu_viewmodel.dart';
 import 'detail_screen.dart';
 import 'profile_screen.dart';
+import '../widgets/offline_banner.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -68,6 +69,8 @@ class HomeScreen extends StatelessWidget {
 ),
           body: Column(
             children: [
+              // İnternet yoksa banner göster
+              if (viewModel.isOffline) const OfflineBanner(),
               // Filtre butonları
               SizedBox(
                 height: 50,

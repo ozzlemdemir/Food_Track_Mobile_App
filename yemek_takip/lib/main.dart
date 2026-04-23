@@ -4,11 +4,17 @@ import 'core/di/service_locator.dart';
 import 'features/menu/presentation/viewmodels/menu_viewmodel.dart';
 import 'screens/login_screen.dart';
 
-void main() {
-  ServiceLocator().setup();
+void main() async {
+  // Flutter motorunun hazır olmasını bekle
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // ServiceLocator async oldu (DB bekleniyor)
+  await ServiceLocator().setup();
+
   runApp(
     ChangeNotifierProvider(
-      create: (_) => ServiceLocator().get<MenuViewModel>()..loadMenus(),
+      create: (_) =>
+          ServiceLocator().get<MenuViewModel>()..loadMenus(),
       child: const MyApp(),
     ),
   );
