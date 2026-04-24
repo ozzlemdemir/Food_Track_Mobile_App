@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "20290572587",
+    "project_id": "ktu-yemekhane",
+    "storage_bucket": "ktu-yemekhane.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:20290572587:android:2c776dbbf3929adcecb56e",
+        "android_client_info": {
+          "package_name": "com.example.yemek_takip"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClnIsTumfipmlkzJD3PIOxyOvX04FmlXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import '../../features/menu/data/datasources/firebase_menu_datasource.dart';
 import '../../features/menu/data/datasources/menu_datasource.dart';
 import '../../features/menu/data/repositories/mock_menu_repository.dart';
 import '../../features/menu/data/repositories/offline_first_menu_repository.dart';
@@ -29,18 +30,16 @@ class ServiceLocator {
     final connectivityChecker = ConnectivityChecker();
 
     if (kIsWeb) {
-      // Web'de SQLite çalışmaz, mock repository kullan
       register<MenuRepository>(
         MockMenuRepository(MenuDataSource()),
       );
     } else {
-      // Android/iOS'ta SQLite kullan
       final db = AppDatabase.instance;
       final menuDao = MenuDao(db);
 
       register<MenuRepository>(
         OfflineFirstMenuRepository(
-          dataSource: MenuDataSource(),
+          dataSource: FirebaseMenuDataSource(),
           menuDao: menuDao,
           connectivityChecker: connectivityChecker,
         ),

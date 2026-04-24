@@ -1,14 +1,19 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'core/di/service_locator.dart';
 import 'features/menu/presentation/viewmodels/menu_viewmodel.dart';
+import 'firebase_options.dart';
 import 'screens/login_screen.dart';
 
 void main() async {
-  // Flutter motorunun hazır olmasını bekle
   WidgetsFlutterBinding.ensureInitialized();
 
-  // ServiceLocator async oldu (DB bekleniyor)
+  // Firebase başlat
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   await ServiceLocator().setup();
 
   runApp(

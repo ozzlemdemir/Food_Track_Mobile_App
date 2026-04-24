@@ -3,11 +3,11 @@ import '../../../../core/entities/food_entry.dart';
 import '../../../../core/errors/app_exception.dart';
 import '../../../../core/network/connectivity_checker.dart';
 import '../../domain/repositories/menu_repository.dart';
-import '../datasources/menu_datasource.dart';
+import '../datasources/firebase_menu_datasource.dart';
 import '../models/food_model.dart';
 
 class OfflineFirstMenuRepository implements MenuRepository {
-  final MenuDataSource dataSource;
+  final FirebaseMenuDataSource dataSource;
   final MenuDao menuDao;
   final ConnectivityChecker connectivityChecker;
 
@@ -23,21 +23,15 @@ class OfflineFirstMenuRepository implements MenuRepository {
 
     if (connected) {
       try {
-        // İnternet var → datasource'tan al
         final models = await dataSource.getMenus();
-
-        // SQLite'a kaydet
         await menuDao.insertAll(
           models.map((m) => m.toMap()).toList(),
         );
-
         return models.map((m) => m.toEntity()).toList();
       } catch (e) {
-        // Datasource hata verirse SQLite'a bak
         return await _getFromLocal();
       }
     } else {
-      // İnternet yok → SQLite'tan al
       return await _getFromLocal();
     }
   }
@@ -45,15 +39,11 @@ class OfflineFirstMenuRepository implements MenuRepository {
   Future<List<FoodEntry>> _getFromLocal() async {
     try {
       final maps = await menuDao.queryAll();
-
       if (maps.isEmpty) {
         throw NotFoundException(
             'Kayıtlı veri bulunamadı. İnternet bağlantısı gerekli.');
       }
-
-      return maps
-          .map((m) => FoodModel.fromMap(m).toEntity())
-          .toList();
+      return maps.map((m) => FoodModel.fromMap(m).toEntity()).toList();
     } catch (e) {
       throw ServerException('Yerel veri okunamadı: $e');
     }
@@ -69,7 +59,5 @@ class OfflineFirstMenuRepository implements MenuRepository {
   }
 
   @override
-  void clearCache() {
-    dataSource.clearCache();
-  }
+  void clearCache() {}
 }
