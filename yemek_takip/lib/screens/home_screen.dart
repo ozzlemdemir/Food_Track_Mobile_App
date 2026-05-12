@@ -4,6 +4,7 @@ import '../features/menu/presentation/viewmodels/menu_viewmodel.dart';
 import 'detail_screen.dart';
 import 'profile_screen.dart';
 import '../widgets/offline_banner.dart';
+import 'favorites_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -220,6 +221,13 @@ class HomeScreen extends StatelessWidget {
                   icon: Icon(Icons.person_outline), label: 'Profil'),
             ],
             onTap: (index) {
+              if (index == 1) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (_) => const FavoritesScreen()),
+    );
+  }
               if (index == 2) {
                 Navigator.push(
                   context,

@@ -1,4 +1,7 @@
 import 'package:flutter/foundation.dart';
+import '../../features/auth/data/firebase_auth_repository.dart';
+import '../../features/auth/data/auth_repository.dart';
+import '../../features/auth/presentation/auth_view_model.dart';
 import '../../features/menu/data/datasources/firebase_menu_datasource.dart';
 import '../../features/menu/data/datasources/menu_datasource.dart';
 import '../../features/menu/data/repositories/mock_menu_repository.dart';
@@ -28,6 +31,14 @@ class ServiceLocator {
 
   Future<void> setup() async {
     final connectivityChecker = ConnectivityChecker();
+
+    // Auth repository
+    register<AuthRepository>(FirebaseAuthRepository());
+
+    // Auth ViewModel
+    register<AuthViewModel>(
+      AuthViewModel(get<AuthRepository>()),
+    );
 
     if (kIsWeb) {
       register<MenuRepository>(
